@@ -1,0 +1,21 @@
+body {
+    margin: 0; 
+    padding: 0;
+    padding-bottom: 200px;
+    font-size: 1.2em;
+    font-family: Microsoft JhengHei;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+span[data-type='Button'] {
+    cursor: pointer;
+}
+
+input {
+    padding: 7px 12px;
+    color: #333; 
+    font-size: 1.2em;
+}

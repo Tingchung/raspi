@@ -1,0 +1,12 @@
+{
+  "enableSSL": true,
+  "printer": [
+    { "deviceId": "printer-godex", "type": "godex dt2x", "ip": "192.168.192.130" },
+    { "deviceId": "printer-tp808", "type": "hprt tp808", "ip": "192.168.192.20" },
+    { "deviceId": "printer-epson", "type": "hprt tp808", "ip": "192.168.192.168" }
+  ],
+  "payment": [
+    { "deviceId": "nccc-001", "type": "nccc", "port": "USB0" },
+    { "deviceId": "dont use", "type": "q80", "port": "USB1" }
+  ]
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+
+    <title>開發人員測試工具(local)</title>
+
+    <link href="/static/css/setup.css" type="text/css" rel="stylesheet" />
+
+    <script src="/js/core_mos"></script>
+    <script src="/js/device?5"></script>
+    <script src="/js/devTool?13"></script>
+</head>
+
+<body style="padding-bottom: 140px;">
+
+    <div class="head">
+        <div class="title">開發人員測試工具 <span style="font-size: 0.6em;">ver 1.7</span></div>
+        <div class="buttons">
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">IP</div>
+            <div class="col2">
+                <span id="label_ip" data-type="Label" style="margin-right: 20px;">ws://192.168.25.1</span>
+                <span id="button_websocket_conn" data-type="Button">連線</span>
+                <span id="button_websocket_disconn" data-type="Button" style="visibility: visible;">中斷</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">連線狀態</div>
+            <div class="col2">
+                <span id="label_status_receive" data-type="Label">---</span>
+                <span style="padding: 0 5px;"> | </span>
+                <span id="label_status_process" data-type="Label">---</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">Token</div>
+            <div class="col2" style="word-break:break-all;">
+                <span id="label_token">Vvg7EmfbknzHLvPnnUzMop9lFpYxMDuTaQyGBK1ys6pIiOiiFV1QZlA3WQ6Ev1gv</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">Client Id</div>
+            <div class="col2" style="word-break:break-all;">
+                <span id="label_clientId" data-type="Label">-</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel" style="position: fixed; bottom: 0; left: 0; margin: 0; height: 120px; width: 100%; border: solid 0px #999; box-shadow: -2px 0 12px #555;">
+        <div class="row">
+            <div class="col1">狀態</div>
+            <div class="col2">
+                <span id="label_message" data-type="Label"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">搜尋 RPi 系統</div>
+            <div class="col2">
+                <p style="margin: 0 0 10px 0;">
+                    <input id="text_scan_ip" data-type="TextBox" value="192.168.43.139" style="width: 150px; text-align: left;"></input>
+                </p>
+                <span id="button_scan_ip" data-type="Button">掃描</span>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="panel">
+        <div class="row">
+            <div class="col1">存取設定檔</div>
+            <div class="col2">
+                <p style="margin: 0 0 10px 0;">
+                    <textarea id="text_setting" data-type="TextBox" style="width: 400px; height: 150px; text-align: left;"></textarea>
+                </p>
+                <span id="button_get_setting" data-type="Button">取得設定檔</span>
+                <span id="button_update_setting" data-type="Button">寫入設定檔</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">GODEX DT2X</div>
+            <div class="col2">
+                <span id="button_print_to_dt2x" data-type="Button">列印測試</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">ESCPOS</div>
+            <div class="col2">
+                <span id="button_print_with_escpos" data-type="Button">列印測試</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">WebSocket 開發測試</div>
+            <div class="col2">
+                <p style="margin: 0 0 10px 0;">
+                    <input id="text_statusCode" data-type="TextBox" value="NCCC-OK-001" style="width: 150px; text-align: right;" /><br />
+                </p>
+                <span id="button_1" data-type="Button">DevMode : True (發動模擬付款)</span>
+                <span id="button_2" data-type="Button">DevMode : False(發動真實付款)</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">取得記錄測試</div>
+            <div class="col2">
+                <p style="margin: 0 0 10px 0;">
+                    <input id="text_commandId" data-type="TextBox" value="20210819-uQEfXZ1QyCxPGjQ" style="width: 280px; text-align: right;" />
+                </p>
+                <span id="button_3" data-type="Button">取得記錄</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">發送 NCCC 電文</div>
+            <div class="col2">
+                <p style="margin: 0 0 10px 0;">
+                    <textarea id="text_nccc_message" data-type="TextBox" style="width: 400px; height: 150px; text-align: left;">000</textarea>
+                </p>
+                <span id="button_send_nccc_message" data-type="Button">發送電文</span>
+                <span id="button_send_nccc_checkout_message" data-type="Button">發送結帳電文</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">選擇刷卡機</div>
+            <div class="col2">
+                <select id="list_paymentDevice" data-type="ListBox"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">選擇付款方式</div>
+            <div class="col2">
+                <select id="list_paymentMethod" data-type="ListBox"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">訂單編號</div>
+            <div class="col2">
+                <input id="text_orderId" data-type="TextBox" value="orderId-001" placeholder="訂單編號" style="width: 150px; text-align: left;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">訂單金額</div>
+            <div class="col2">
+                <input id="text_price" data-type="TextBox" value="100" placeholder="訂單金額" style="width: 60px; text-align: right;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1"></div>
+            <div class="col2"><span id="button_start_payment" data-type="Button">發動付款</span></div>
+        </div>
+    </div>
+
+    
+
+</body>
+
+</html>

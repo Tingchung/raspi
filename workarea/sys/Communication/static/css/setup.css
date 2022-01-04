@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-family: 'Microsoft JhengHei';
+}
+
+div {
+    box-sizing: border-box;
+}
+
+[data-type=Button] {
+    cursor: pointer;
+}
+
+.head {
+    display: table;
+    padding: 0 20px 20px 20px;
+    width: 100%;
+}
+
+    .head .title {
+        display: table-cell;
+        width: 460px;
+        color: #333;
+        font-size: 2.5em;
+        font-family: Arial, 'Microsoft YaHei';
+    }
+
+    .head .buttons {
+        display: table-cell;
+        text-align: right;
+    }
+        .head .buttons .button {
+            padding: 10px 20px 10px 20px;
+            color: #fff;
+            background-color: #2090d5;
+            font-size: 1.2em;
+            font-weight: normal;
+            font-family: 'Microsoft JhengHei';
+        }
+
+.panel {
+    margin-bottom: 20px;
+    padding: 40px;
+    width: 100%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+}
+
+    .panel .row {
+        display: table;
+        padding-bottom: 30px;
+        width: 100%;
+        color: #333;
+        font-size: 1.1em;
+        font-weight: bold;
+        font-family: 'Microsoft JhengHei';
+    }
+
+        .panel .row:last-child {
+            padding-bottom: 0;
+        }
+
+        .panel .row .col1 {
+            display: table-cell;
+            width: 25%;
+            font-weight: normal;
+            vertical-align: top;
+        }
+
+        .panel .row .col2 {
+            display: table-cell;
+        }
+
+            .panel .row .col2 span[data-type=Button] {
+                padding: 8px 17px 8px 17px;
+                color: #fff;
+                background-color: #555;
+                font-size: 0.9em;
+                font-weight: normal;
+            }
+
+            .panel .row .col2 [data-type=TextBox] {
+                padding: 8px 17px 8px 17px;
+                color: #333;
+                background-color: #fff;
+                border: solid 1px #777;
+                border-radius: 5px;
+                font-size: 1em;
+                font-weight: normal;
+                resize: none;
+            }
+            .panel .row .col2 [data-type=TextBox]:focus {
+                outline-color: #777;
+            }
+
+            .panel .row .col2 select {
+                padding: 6px 17px;
+                min-width: 100px;
+                color: #333;
+                background-color: #fff;
+                border: solid 1px #777;
+                font-size: 1em;
+                font-weight: normal;
+            }

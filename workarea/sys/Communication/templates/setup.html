@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+
+    <title>設備中控機設定-SIMPOS</title>
+
+    <link href="/static/css/setup.css" type="text/css" rel="stylesheet" />
+
+    <script src="/js/core_mos"></script>
+    <script src="/js/setup"></script>
+</head>
+
+<body>
+
+    <div class="head">
+        <div class="title">設備中控機設定</div>
+        <div class="buttons">
+            <span id="button_save_setting" data-type="Button" class="button">儲存設定</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col1">LOGO 圖檔上傳</div>
+            <div class="col2">
+                <span id="button_select_image" data-type="Button">選擇圖檔</span>
+                <div style="margin-top: 30px;">
+                    <img id="image_logo" src="/static/img/logo.jpg" style="max-height: 100px;" />
+                </div>
+                <div style="display: none;">
+                    <input type="file" id="file_logo" value="" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
