@@ -4,7 +4,7 @@
 # Version       : 1.0
 # Last Revise   : 2021/8/22
 
-import tp808
+import tp808compact
 
 thisPrintDataList = [
         { "type": "codepage", "content": "big5" },
@@ -29,5 +29,5 @@ thisPrintDataList = [
 #         { "type": "text", "content": "\n1\n\n\n\n\n\n\n\n\n" }
 #     ]
 
-thisIP = '192.168.192.151'
-tp808.print_content(thisPrintDataList,thisIP)
+thisIP = '10.0.4.115'
+tp808compact.print_content(thisPrintDataList,thisIP)

@@ -15,17 +15,17 @@ import six
 import requests
 
 
-_folderPath = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, os.path.abspath('{}/../app_code'.format(_folderPath)))
-import config
+# _folderPath = os.path.abspath(os.path.dirname(__file__))
+# sys.path.insert(0, os.path.abspath('{}/../app_code'.format(_folderPath)))
+# import config
 
-sys.path.insert(0, config.path('~/../../lib/Cuki.Lib'))
-from utility import randomTool
+# sys.path.insert(0, config.path('~/../../lib/Cuki.Lib'))
+# from utility import randomTool
 
 
 # 圖片快取目錄，檔案路徑
-_folderPath_imageCacheList = "~/app_data/file_db/common"
-_filePath_imageCacheList = config.path(f"{_folderPath_imageCacheList}/image_cachelist.json")
+# _folderPath_imageCacheList = "~/app_data/file_db/common"
+# _filePath_imageCacheList = config.path(f"{_folderPath_imageCacheList}/image_cachelist.json")
 
 # 圖片快取路徑
 _folderPath_image = "~/app_data/image_temp"
@@ -33,81 +33,81 @@ _folderPath_image = "~/app_data/image_temp"
 
 # Func : save_image_by_url
 # Desc : 將 url 指定的圖片存下來
-def save_image_by_url(thisURL): 
-    _url = thisURL
+# def save_image_by_url(thisURL): 
+#     _url = thisURL
     
-    # 取得副檔名
-    _urlParamArray = _url.split('?') # 以？切割字串， 取得不含參數的網址
-    _urlPathArray = _urlParamArray[0].split("/") #用／切割網址， 取得檔名
-    _fileName = _urlPathArray[len(_urlPathArray)-1]
-    _fileNameArray = _fileName.split(".") # 用.切割檔名, 取得副檔名
-    _subFileName = _fileNameArray[len(_fileNameArray) -1]
+#     # 取得副檔名
+#     _urlParamArray = _url.split('?') # 以？切割字串， 取得不含參數的網址
+#     _urlPathArray = _urlParamArray[0].split("/") #用／切割網址， 取得檔名
+#     _fileName = _urlPathArray[len(_urlPathArray)-1]
+#     _fileNameArray = _fileName.split(".") # 用.切割檔名, 取得副檔名
+#     _subFileName = _fileNameArray[len(_fileNameArray) -1]
 
-    # 取得檔案
-    r = requests.get(_url, allow_redirects=True)
+#     # 取得檔案
+#     r = requests.get(_url, allow_redirects=True)
 
-    # 檢查目錄是否存在
-    _directoryPath = config.path(_folderPath_image)
-    if (os.path.exists(_directoryPath) == False): 
-        os.mkdir(_directoryPath)
+#     # 檢查目錄是否存在
+#     _directoryPath = config.path(_folderPath_image)
+#     if (os.path.exists(_directoryPath) == False): 
+#         os.mkdir(_directoryPath)
 
-    _id= randomTool.get_id(20)
-    _newFileName = f"{_id}.{_subFileName}"
-    _filePath = config.path(f"{_folderPath_image}/{_newFileName}")
-    open(_filePath, 'wb').write(r.content)
+#     _id= randomTool.get_id(20)
+#     _newFileName = f"{_id}.{_subFileName}"
+#     _filePath = config.path(f"{_folderPath_image}/{_newFileName}")
+#     open(_filePath, 'wb').write(r.content)
     
 
-    return _newFileName
+#     return _newFileName
 
 
 # Func : get_fileName_from_cacheFile
 # Desc : 從快取檔中取得檔案名稱
-def get_fileName_from_cacheFile(thisURL):
-    _url = thisURL
+# def get_fileName_from_cacheFile(thisURL):
+#     _url = thisURL
 
-    # 檢查檔案是否存在
-    if (os.path.exists(_filePath_imageCacheList) == False): 
-        return ""
+#     # 檢查檔案是否存在
+#     if (os.path.exists(_filePath_imageCacheList) == False): 
+#         return ""
     
-    # 取得檔案內容， 並確認內容是否為空
-    _fileContent = ""
-    with open(_filePath_imageCacheList, 'r', encoding="utf-8") as objFile: 
-        _fileContent = objFile.read()
+#     # 取得檔案內容， 並確認內容是否為空
+#     _fileContent = ""
+#     with open(_filePath_imageCacheList, 'r', encoding="utf-8") as objFile: 
+#         _fileContent = objFile.read()
     
-    if (_fileContent == ""): 
-        return ""
+#     if (_fileContent == ""): 
+#         return ""
 
-    # 檢查快取是否存在
-    _imageCacheList = json.loads(_fileContent)
-    if (_url.lower() in _imageCacheList): 
-        return _imageCacheList[_url.lower()]
+#     # 檢查快取是否存在
+#     _imageCacheList = json.loads(_fileContent)
+#     if (_url.lower() in _imageCacheList): 
+#         return _imageCacheList[_url.lower()]
     
-    return ""
+#     return ""
 
 
 # Func : add_imageCache
 # Desc : 將 url 和 檔名存入快取
-def add_imageCache(thisURL): 
-    _url = thisURL
-    _fileName = save_image_by_url(thisURL)
+# def add_imageCache(thisURL): 
+#     _url = thisURL
+#     _fileName = save_image_by_url(thisURL)
 
-    # 取得圖片快取清單
-    _imageCacheList = {}
-    if (os.path.exists(_filePath_imageCacheList) == True):
-        _fileContent = ""
-        with open(_filePath_imageCacheList, 'r', encoding="utf-8") as objFile: 
-            _fileContent = objFile.read()
+#     # 取得圖片快取清單
+#     _imageCacheList = {}
+#     if (os.path.exists(_filePath_imageCacheList) == True):
+#         _fileContent = ""
+#         with open(_filePath_imageCacheList, 'r', encoding="utf-8") as objFile: 
+#             _fileContent = objFile.read()
 
-        if (_fileContent != ""): 
-            _imageCacheList = json.loads(_fileContent)
+#         if (_fileContent != ""): 
+#             _imageCacheList = json.loads(_fileContent)
     
     
-    # 儲存圖片快取清單
-    _imageCacheList[_url] = _fileName
-    with open(_filePath_imageCacheList, 'w') as objFile: 
-        objFile.write(json.dumps(_imageCacheList))
+#     # 儲存圖片快取清單
+#     _imageCacheList[_url] = _fileName
+#     with open(_filePath_imageCacheList, 'w') as objFile: 
+#         objFile.write(json.dumps(_imageCacheList))
 
-    return True
+#     return True
 
 
 #Func : produce_invoiceBarcode
@@ -210,33 +210,21 @@ def print_content(thisPrintDataList, thisIP):
     _printDataList = thisPrintDataList
 
     # 宣告印表機物件
-    try:
-        printer = Network(_ip)
-    except Exception as e:
-        _result = {
-            "isSuccess": False,
-            "message": "connect error",
-            "data": {
-                "statusCode": "tp808-ERR-001"
-            }
-        }
-
-        return _result
-
+    printer = Network(_ip,timeout=1)
 
     # 先取得所有 Image， 然後存下來
-    i = 0
-    while(i < len(_printDataList)): 
-        _item = _printDataList[i]
-        _type = _item["type"].lower()
-        _content = _item["content"]
+    # i = 0
+    # while(i < len(_printDataList)): 
+    #     _item = _printDataList[i]
+    #     _type = _item["type"].lower()
+    #     _content = _item["content"]
         
-        if (_type == "image"): 
-            _fileName = get_fileName_from_cacheFile(_content)
-            if (_fileName == ""): 
-                add_imageCache(_content)
+    #     if (_type == "image"): 
+    #         _fileName = get_fileName_from_cacheFile(_content)
+    #         if (_fileName == ""): 
+    #             add_imageCache(_content)
         
-        i+=1
+    #     i+=1
        
 
     # 依傳進來的資料及順序設定及列印資料
@@ -308,10 +296,10 @@ def print_content(thisPrintDataList, thisIP):
             printer.set(align=_align, font=_font, text_type=_textType, width=_width, height=_height, density=_density, invert=_invert, smooth=_smooth, flip=_flip)
 
         # 使用列印圖片
-        if (_type=="image"): 
-            _fileName = get_fileName_from_cacheFile(_content)
-            _filePath_image = config.path(f"{_folderPath_image}/{_fileName}")
-            printer.image(_filePath_image)
+        # if (_type=="image"): 
+        #     _fileName = get_fileName_from_cacheFile(_content)
+        #     _filePath_image = config.path(f"{_folderPath_image}/{_fileName}")
+        #     printer.image(_filePath_image)
 
         # 使用 _raw 列印 bytearray 內容
         if (_type=="_raw"): 

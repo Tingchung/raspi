@@ -2,8 +2,8 @@
 
 # Module : command
 # Author : Johnny Fang <johnnyfang.tw@gmail.com>
-# Version : 1.2.13
-# Last Revise : 2021/10/14
+# Version : 1.3.14
+# Last Revise : 2022/1/4
 
 
 import sys
@@ -15,15 +15,16 @@ from datetime import timedelta
 import time
 import sqlite3
 
-from . import config
-sys.path.insert(0, config.path('~/../../lib/Cuki.Lib'))
-from database import sqlite_access as sqlaccess
-from utility import randomTool 
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "./../../../lib/Cuki.Lib"))
+
+import config
 import process_system as processSystem
 import process_nccc as nccc
+import process_q80 as q80
 import process_godex as godex
 import process_hprt as hprt
-
+from database import sqlite_access as sqlaccess
+from utility import randomTool 
 
 
 
@@ -143,7 +144,13 @@ def execute(thisDbCommand):
         _isDevMode = True
         _result_execute = process_devTest(_commandId, _commandDetail)
     else:
-        _result_execute = execute_case(_commandId, _commandType, _method, _commandDetail)  
+        try:
+            _result_execute = execute_case(_commandId, _commandType, _method, _commandDetail)  
+        except:
+            _result_execute = {
+                "isSuccess": False, 
+                "message": "unknow error !!"
+            }
 
 
     # 將命令標記為已完成
@@ -220,7 +227,10 @@ def execute_case(thisCommandId, thisCommandType, thisMethod, thisCommandDetail):
                 _result_execute = nccc.send_message(_commandId, _commandDetail, _deviceInfo)
         #       [ Q80 刷卡機 ]
         if _deviceInfo["type"] == "q80":
-            return
+            if _method == "start_payment":
+                _result_execute = q80.start_payment(_commandId, _commandDetail, _deviceInfo)
+            if _method == "send_message":
+                _result_execute = q80.send_message(_commandId, _commandDetail, _deviceInfo)
 
     #       處理 "印表" 相關命令
     if _commandType == "print":
